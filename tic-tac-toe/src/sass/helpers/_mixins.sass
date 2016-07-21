@@ -1,0 +1,40 @@
+=animate($name, $duration: $duration, $direction: alternate)
+  -o-animation:
+    name: $name
+    iteration-count: infinite
+    direction: $direction
+    duration: $duration
+    play-state: paused
+
+  -moz-animation:
+    name: $name
+    iteration-count: infinite
+    direction: $direction
+    duration: $duration
+    play-state: paused
+
+  -webkit-animation:
+    name: $name
+    iteration-count: infinite
+    direction: $direction
+    duration: $duration
+    play-state: paused
+
+  animation:
+    name: $name
+    iteration-count: infinite
+    direction: $direction
+    duration: $duration
+    play-state: paused
+
+  @-webkit-keyframes #{$name}
+    @content
+
+  @-o-keyframes #{$name}
+    @content
+
+  @-moz-keyframes #{$name}
+    @content
+
+  @keyframes #{$name}
+    @content

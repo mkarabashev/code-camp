@@ -1,0 +1,32 @@
+.axle
+  height: $borders * $size
+  width: 0
+  position: absolute
+  z-index: 1
+  box-shadow: 1px 1px 1px 0px rgba(0,0,0,1)
+
+  +animate($name: axle)
+    0%, 2%
+      width: 0
+    #{$anim-part-1}
+      width: (0.5 - 0.1 * $borders) * $size
+    #{$anim-part-2}
+      width: (0.33 - $borders/2) * $size
+    100%
+      width: 0.5 * $size
+
+#axle-lt
+  left: 0
+  margin-top: (0.33 - $borders/2) * $size
+
+#axle-lb
+  left: 0
+  margin-top: (0.66 - $borders/2) * $size
+
+#axle-rt
+  right: 0
+  margin-top: (0.33 - $borders/2) * $size
+
+#axle-rb
+  right: 0
+  margin-top: (0.66 - $borders/2) * $size

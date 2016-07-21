@@ -1,0 +1,56 @@
+@media screen and (max-aspect-ratio: 4/5)
+  .outer-h
+    height: $size-p + $padding
+
+  header
+    top: -20vmin
+  .outer-w,
+  .inner-container
+    width: $size-p
+    height: $size-p
+
+  .inner-container
+    +animate($name: inner-container)
+      0%
+        margin-left: 0
+      #{$anim-prefade}
+        margin-left: -0.2 * $size-p
+        opacity: 1
+      #{$anim-part-1}, 100%
+        opacity: 0
+        margin-left: -$size-p
+
+  .cell
+    width: 0.33 * $size-p
+    height: 0.33 * $size-p
+
+  .right
+    margin-left: 0.66 * $size-p
+
+  #platform-l,
+  #platform-r
+    width: $borders * $size-p
+
+  .axle
+    height: $borders * $size
+    +animate($name: axle)
+      0%, 2%
+        width: 0
+      #{$anim-part-1}
+        width: (0.5 - 0.1 * $borders) * $size-p
+      #{$anim-part-2}
+        width: (0.33 - $borders/2) * $size-p
+      100%
+        width: 0.5 * $size-p
+
+  #axle-lt
+    margin-top: (0.33 - $borders/2) * $size-p
+
+  #axle-lb
+    margin-top: (0.66 - $borders/2) * $size-p
+
+  #axle-rt
+    margin-top: (0.33 - $borders/2) * $size-p
+
+  #axle-rb
+    margin-top: (0.66 - $borders/2) * $size-p

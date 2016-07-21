@@ -1,0 +1,16 @@
+.board
+  position: absolute
+  +animate($name: board)
+    0%, 3%
+      opacity: 0
+    4%, 100%
+      opacity: 1
+
+.right
+  z-index: 0
+  margin-left: 0.66 * $size
+
+.cell
+  text-align: center
+  width: 0.33 * $size
+  height: 0.33 * $size

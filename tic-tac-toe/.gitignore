@@ -1,5 +1,7 @@
-tic-tac-toe/node_modules/
-tic-tac-toe/dist/
+# npm and dist folders
+graphics/ai_files/
+node_modules/
+dist/
 
 # Windows image file caches
 Thumbs.db
