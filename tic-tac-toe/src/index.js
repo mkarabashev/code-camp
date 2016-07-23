@@ -1,9 +1,9 @@
 require('./sass/main.sass');
 const animation = require('./animation/index.js');
 const Board = require('./game/board.js');
-const Win = require('./game/winning.js');
 const el = require('./cache/index.js');
 const ai = require('./ai/index.js');
+const victory = require('./animation/victory.js');
 
 (function () {
   // setting up the game record
@@ -23,7 +23,7 @@ const ai = require('./ai/index.js');
     'human': '',
     'computer': ''
   };
-
+  let turnAI;
   // DOM cache
   const $btn = el.$innerC.find('.btn');
   const $td = el.$outer.find('td');
@@ -35,29 +35,37 @@ const ai = require('./ai/index.js');
   $btn.on('click', '.choice', onClick);
 
   // render (board related)
-  // animation is render at '../animation/index.js'
-  function render(element, content) {
-    element.html(content);
+  // board construction animation is rendered at '../animation/animation.js'
+  // victory animation is rendered at '../animation/victory.js'
+  function render(element, content, bounce = false) {
+    if (bounce) {
+      element.html('<div class="symbol">' + content + '</div>');
+    } else {
+      element.html(content);
+    }
   }
 
   // initiate animation, set the symbols, determine who goes first
   function onClick(event) {
-    board = new Board();
-    animation.renderCSS();
-    assignSymbols(event);
-    if (Math.random() < 0.5) drawSymbolAI(true);
+    if (animation.animStatus()) {
+      board = new Board();
+      animation.renderCSS();
+      assignSymbols(event);
+      turnAI = false;
+      if (Math.random() < 0.5) window.setTimeout(() => drawSymbolAI(true), 2900);
+    }
   }
 
   // make legal moves and wait for the AI
   function makeMove(event) {
-    const turnAI = drawSymbol(event);
-    if (turnAI) drawSymbolAI();
+    if (!turnAI) {
+      drawSymbol(event);
+      if (turnAI) window.setTimeout(drawSymbolAI, 700);
+    }
   }
 
   function drawSymbol(event) {
     if (animation.isChoice() || board.isGameOver()) return;
-
-    let turnAI = false;
     const $add = $(event.target).closest('td');
     const move = $add.attr('id');
 
@@ -65,25 +73,28 @@ const ai = require('./ai/index.js');
       manageMove($add, 'human', move);
       if (!board.isGameOver()) turnAI = true;
     }
-    return turnAI;
   }
 
-  function drawSymbolAI() {
+  function drawSymbolAI(first = false) {
     if (board.getMoves().length) {
-      const move = arguments[0] ? ai.rand(board) : ai.minimax(board);
+      const move = first ? ai.rand(board) : ai.minimax(board);
       const $add = $td.eq( mapToDOM[move] );
       manageMove($add, 'computer', move);
+      if (!board.isGameOver()) window.setTimeout(() => turnAI = false, 200);
     }
   }
 
   // helper methods
   function manageMove(element, player, move) {
-    render(element, symbol[player]);
+    render(element, symbol[player], true);
     board.registerMove(player, move);
     let isGameOver = board.isGameOver();
+
     if (typeof isGameOver === 'string') {
       render($whoWon, isGameOver);
-      animation.renderCSS();
+      victory.showWin(board.getRecord(player));
+      const timeout = isGameOver === 'It was a draw' ? 2000 : 3200
+      window.setTimeout(animation.renderCSS, timeout);
     };
   }
 

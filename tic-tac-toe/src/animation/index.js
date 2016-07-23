@@ -48,6 +48,9 @@ module.exports = (function () {
 
   return {
     isChoice,
-    renderCSS
+    renderCSS,
+    animStatus: function () {
+      return el.$inner.css('animation-play-state') === 'paused';
+    }
   };
 })();

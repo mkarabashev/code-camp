@@ -1,0 +1,48 @@
+.line
+  position: absolute
+  border: 0.005 * $size dashed $text-color
+  opacity: 0.8
+  z-index: 3
+
+.line-0
+  height: 0.9 * $size
+  margin: 0.05 * $size 0 0 0.825 * $size
+
+.line-1
+  height: 0.9 * $size
+  margin: 0.05 * $size 0 0 0.165 * $size
+
+.line-2
+  height: 0.9 * $size
+  margin: 0.05 * $size 0 0 0.495 * $size
+
+.line-3
+  width: 0.9 * $size
+  margin: 0.163 * $size 0 0 0.05 * $size
+
+.line-4
+  width: 0.9 * $size
+  margin: 0.5 * $size 0 0 0.05 * $size
+
+.line-5
+  width: 0.9 * $size
+  margin: 0.835 * $size 0 0 0.05 * $size
+
+.line-6
+  width: $size
+  margin: 0.5 * $size 0 0 0 * $size
+  +animate-bounce($name: pos-diag, $rotate: 45deg)
+
+
+.line-7
+  width: $size
+  margin: 0.5 * $size 0 0 0 * $size
+  +animate-bounce($name: neg-diag, $rotate: -45deg)
+
+.line-0,
+.line-1,
+.line-2,
+.line-3,
+.line-4,
+.line-5
+  +animate-bounce($name: line)

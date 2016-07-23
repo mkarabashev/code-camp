@@ -1,6 +1,6 @@
 {
   "name": "tic-tac-toe",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "a game of tic-tac-toe",
   "main": "index.js",
   "scripts": {
@@ -11,12 +11,11 @@
     "type": "git",
     "url": "./git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Maxim Karabashev",
+  "license": "MIT",
   "dependencies": {
     "immutable": "^3.8.1",
-    "jquery": "^3.1.0",
-    "sizzle": "^2.3.0"
+    "jquery": "^3.1.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",

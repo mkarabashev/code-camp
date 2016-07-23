@@ -6,6 +6,19 @@
     4%, 100%
       opacity: 1
 
+.board-inner
+  width: 100%
+  height: 100%
+  padding: 0 $borders * 100% 0 $borders * 100%
+  position: absolute
+  opacity: 0
+
+  +animate($name: board-inner)
+    0%, #{$anim-prefade}
+      opacity: 0
+    #{$anim-part-1}, 100%
+      opacity: 1
+
 .right
   z-index: 0
   margin-left: 0.66 * $size
@@ -14,3 +27,14 @@
   text-align: center
   width: 0.33 * $size
   height: 0.33 * $size
+
+.symbol
+  font-size: 10vmin
+  animation-timing-function: cubic-bezier(.71,.55,.62,1.3)
+  +animate($name: symbol, $iteration: 1, $play-state: start, $duration: 0.5s)
+    from
+      opacity: 0
+      transform: scale(3, 3)
+    to
+      opacity: 1
+      transform: scale(1, 1)
