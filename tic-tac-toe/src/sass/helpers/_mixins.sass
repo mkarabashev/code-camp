@@ -42,15 +42,33 @@
 =animate-bounce($name: line, $duration: 2.5s, $rotate: 0deg)
   font-size: 6vmin
   transform: rotate($rotate)
-  animation-timing-function: cubic-bezier(.71,.55,.62,1.3)
-  animation-fill-mode: forwards
+  +animation-timing-function(cubic-bezier(.71,.55,.62,1.3))
+  +animation-fill-mode(forwards)
   +animate($name: $name, $iteration: 1, $play-state: start, $duration: $duration)
     from
       opacity: 0
-      transform: scale(4, 4) rotate($rotate)
+      +transform(scale(4, 4) rotate($rotate))
     40%, 60%
       opacity: 1
-      transform: scale(1, 1) rotate($rotate)
+      +transform(scale(1, 1) rotate($rotate))
     to
       opacity: 0
-      transform: scale(4, 4) rotate($rotate)
+      +transform(scale(4, 4) rotate($rotate))
+
+=transform($input)
+  -webkit-transform: $input
+  -moz-transform: $input
+  -o-transform: $input
+  transform: $input
+
+=animation-timing-function($input)
+  -webkit-animation-timing-function: $input
+  -moz-animation-timing-function: $input
+  -o-animation-timing-function: $input
+  animation-timing-function: $input
+
+=animation-fill-mode($input)
+  -webkit-animation-fill-mode: $input
+  -moz-animation-fill-mode: $input
+  -o-animation-fill-mode: $input
+  animation-fill-mode: $input

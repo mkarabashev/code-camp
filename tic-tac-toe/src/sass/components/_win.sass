@@ -1,42 +1,49 @@
 .line
   position: absolute
-  border: 0.005 * $size dashed $text-color
   opacity: 0.8
   z-index: 3
 
 .line-0
   height: 0.9 * $size
   margin: 0.05 * $size 0 0 0.825 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-1
   height: 0.9 * $size
   margin: 0.05 * $size 0 0 0.165 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-2
   height: 0.9 * $size
   margin: 0.05 * $size 0 0 0.495 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-3
   width: 0.9 * $size
   margin: 0.163 * $size 0 0 0.05 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-4
   width: 0.9 * $size
   margin: 0.5 * $size 0 0 0.05 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-5
   width: 0.9 * $size
   margin: 0.835 * $size 0 0 0.05 * $size
+  border: 0.005 * $size dashed $text-color
 
 .line-6
   width: $size
-  margin: 0.5 * $size 0 0 0 * $size
+  margin: 0.5 * $size 0 0 0
+  border-bottom: 0.01 * $size dashed $text-color
   +animate-bounce($name: pos-diag, $rotate: 45deg)
 
 
 .line-7
   width: $size
-  margin: 0.5 * $size 0 0 0 * $size
+  margin: 0.5 * $size 0 0 0
+  border-bottom: 0.01 * $size dashed $text-color
   +animate-bounce($name: neg-diag, $rotate: -45deg)
 
 .line-0,

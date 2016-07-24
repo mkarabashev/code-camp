@@ -41,7 +41,7 @@ module.exports = function (lines = Immutable.List()) {
     return Math.max(lines.get(6).size, lines.get(7).size);
   }
 
-  return Object.assign(this, {
+  return {
     hasWon: function () {
       return winHeuristics === 3;
     },
@@ -52,5 +52,5 @@ module.exports = function (lines = Immutable.List()) {
       return winHeuristics === 3 ? 10 : 0;
     },
     checkLines
-  });
+  };
 };
