@@ -1,5 +1,7 @@
 require('./sass/main.sass');
-const animation = require('./animation/index.js');
+require('./animation/screen.js');
+require('./animation/browser.js');
+const events = require('./events/events.js');
 const Board = require('./game/board.js');
 const el = require('./cache/index.js');
 const ai = require('./ai/index.js');
@@ -24,12 +26,17 @@ const victory = require('./animation/victory.js');
     'computer': ''
   };
   let turnAI;
+  let animPaused = true;
+  let initialScreen = true;
+
   // DOM cache
   const $btn = el.$innerC.find('.btn');
   const $td = el.$outer.find('td');
   const $whoWon = el.$innerC.find('.who-won');
 
   // bind
+  events.on('animationStatus', (status) => animPaused = status);
+  events.on('isChoice', onStartScreen);
   el.$board.on('click', 'td', makeMove);
   el.$boardI.on('click', 'td', makeMove);
   $btn.on('click', '.choice', onClick);
@@ -45,12 +52,25 @@ const victory = require('./animation/victory.js');
     }
   }
 
+  function onStartScreen(isStartScreen) {
+    initialScreen = isStartScreen;
+    if (isStartScreen) {
+      render($td, '');
+    }
+  }
+
   // initiate animation, set the symbols, determine who goes first
   function onClick(event) {
-    if (animation.animStatus()) {
-      board = new Board();
-      animation.renderCSS();
+    function assignSymbols(event) {
+      const $symbol = $(event.target).closest('.choice');
+      symbol.human = $symbol.attr('id') === 'o' ? 'O' : 'X';
+      symbol.computer = symbol.human === 'O' ? 'X' : 'O';
+    }
+
+    if (animPaused) {
       assignSymbols(event);
+      events.emit('newScreen');
+      board = new Board();
       turnAI = false;
       if (Math.random() < 0.5) window.setTimeout(() => drawSymbolAI(true), 2900);
     }
@@ -65,7 +85,7 @@ const victory = require('./animation/victory.js');
   }
 
   function drawSymbol(event) {
-    if (animation.isChoice() || board.isGameOver()) return;
+    if (initialScreen || board.isGameOver()) return;
     const $add = $(event.target).closest('td');
     const move = $add.attr('id');
 
@@ -84,7 +104,7 @@ const victory = require('./animation/victory.js');
     }
   }
 
-  // helper methods
+  // move mixin
   function manageMove(element, player, move) {
     render(element, symbol[player], true);
     board.registerMove(player, move);
@@ -92,15 +112,9 @@ const victory = require('./animation/victory.js');
 
     if (typeof isGameOver === 'string') {
       render($whoWon, isGameOver);
-      victory.showWin(board.getRecord(player));
+      events.emit('victory', board.getRecord(player));
       const timeout = isGameOver === 'It was a draw' ? 2000 : 3200
-      window.setTimeout(animation.renderCSS, timeout);
+      window.setTimeout(() => events.emit('newScreen'), timeout);
     };
-  }
-
-  function assignSymbols(event) {
-    const $symbol = $(event.target).closest('.choice');
-    symbol.human = $symbol.attr('id') === 'o' ? 'O' : 'X';
-    symbol.computer = symbol.human === 'O' ? 'X' : 'O';
   }
 })();
