@@ -1,4 +1,3 @@
-require('./sass/main.sass');
 require('./animation/screen.js');
 require('./animation/browser.js');
 const events = require('./events/events.js');

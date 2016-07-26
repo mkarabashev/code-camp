@@ -1,7 +1,7 @@
 const Board = require('../game/board.js');
 
 module.exports = (function () {
-  function max(board, level) {
+  function max(board, level, origin = false) {
     level--;
     let bestMove;
     let bestScore = Number.NEGATIVE_INFINITY;
@@ -20,7 +20,7 @@ module.exports = (function () {
       }
     });
 
-    return arguments[2] ? bestMove : bestScore;
+    return origin ? bestMove : bestScore;
   }
 
   function min(board, level) {
@@ -34,7 +34,7 @@ module.exports = (function () {
       const score = nextBoard.isGameOver() || level === 0
         ? -nextBoard.getHeuristics('human')
         : max(nextBoard, level);
-        
+
       bestScore = Math.min(score, bestScore);
     });
     return bestScore;

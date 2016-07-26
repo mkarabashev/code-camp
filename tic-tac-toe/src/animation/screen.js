@@ -6,9 +6,6 @@ module.exports = (function () {
   let animationiteration = 'animationiteration';
   let animationPlayState = 'animation-play-state';
 
-  // DOM cache
-  const $td = el.$outer.find('td');
-
   // bind events
   events.on('browserCheck', setPrefix);
   events.on('newScreen', render);
@@ -22,7 +19,7 @@ module.exports = (function () {
         : 'paused';
 
     for (let prop in el) {
-      if (el.hasOwnProperty(prop) && prop !== '$btn' && prop !== '$td') {
+      if (el.hasOwnProperty(prop) && prop !== '$btn') {
         el[prop].css(animationPlayState, state);
       }
     }
