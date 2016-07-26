@@ -33,8 +33,8 @@ const base = {
 
 const common = merge(
   base,
-  parts.jade(PATHS.src),
-  parts.js(PATHS.src),
+  parts.jade(),
+  parts.js(),
   parts.png(PATHS.src)
 );
 
@@ -53,7 +53,7 @@ switch(process.env.npm_lifecycle_event) {
       },
       parts.clean(PATHS.dist),
       parts.extractVendors(),
-      parts.extractSASS(PATHS.style),
+      parts.extractSASS(),
       parts.minify()
     );
     break;
@@ -63,11 +63,12 @@ switch(process.env.npm_lifecycle_event) {
       {
         devtool: 'eval-source-map'
       },
-      parts.SASS(PATHS.style),
+      parts.SASS(),
       parts.devServer({
-      host: process.env.HOST,
-      port: process.env.PORT
-    }));
+        host: process.env.HOST,
+        port: process.env.PORT
+      })
+    );
 }
 
 module.exports = validate(config);

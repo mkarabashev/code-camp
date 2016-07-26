@@ -39,40 +39,39 @@ exports.devServer = function(options) {
   };
 }
 
-exports.setupCSS = function (paths) {
+exports.setupCSS = function () {
   return {
     module: {
       loaders: [
         {
           test: /\.css$/,
           loaders: ['style', 'css'],
-          include: paths
         }
       ]
     }
   };
 };
 
-exports.SASS = function (paths) {
+exports.SASS = function () {
   return {
     module: {
       loaders: [
         {
           test: /\.sass$|\.scss$/,
-          loaders: ['style', 'css', 'sass']
+          loaders: ['style', 'css', 'sass'],
         }
       ]
     }
   };
 };
 
-exports.jade = function (paths) {
+exports.jade = function () {
   return {
     module: {
       loaders: [
         {
           test: /\.jade$/,
-          loaders: ['jade']
+          loaders: ['jade'],
         }
       ]
     }
@@ -85,14 +84,14 @@ exports.png = function (paths) {
       loaders: [
         {
           test: /.png/,
-          loaders: ['file-loader']
+          loaders: ['file?name=[path][name].[ext]?[hash]&context=' + paths],
         }
       ]
     }
   };
 };
 
-exports.js = function (paths) {
+exports.js = function () {
   return {
     module: {
       loaders: [
@@ -184,7 +183,7 @@ exports.clean = function(path) {
   };
 };
 
-exports.extractSASS = function (paths) {
+exports.extractSASS = function () {
   return {
     module: {
       loaders: [
@@ -192,7 +191,6 @@ exports.extractSASS = function (paths) {
         {
           test: /\.scss$|\.sass$/,
           loader: ExtractTextWebpackPlugin.extract('style', ['css', 'sass']),
-          include: paths
         }
       ]
     },
