@@ -4,41 +4,41 @@ html(lang="en")
     title TIC TAC TOE
     meta(charset="utf-8")
     
-    body
+  body
 
-      .outer-h
-        header
-          .title
-            h1.btn <i>Code Camp's</i> TIC TAC TOE      
-        .outer-w
-          #axle-lt.axle
-          #axle-lb.axle
-          #axle-rt.axle
-          #axle-rb.axle
-          #on-victory
-          .inner
-            .bg
-            table.board-inner
-              for row in [2, 5, 8]
-                tr
-                  td(id=row).cell           
-            .inner-container
-              .msg
-                p.who-won A New Game
-                p Choose a Side
-                p.btn 
-                  span#x.choice X 
-                  span |
-                  span#o.choice  O
-            #platform-l.platform           
-            #platform-r.platform
-            
-          table.board.left
-            for row in [1, 4, 7]
+    .outer-h
+      header
+        .title
+          h1.btn <i>Code Camp's</i> TIC TAC TOE      
+      .outer-w
+        #axle-lt.axle
+        #axle-lb.axle
+        #axle-rt.axle
+        #axle-rb.axle
+        #on-victory
+        .inner
+          .bg
+          table.board-inner
+            for row in [2, 5, 8]
               tr
-                td(id=row).cell
-                
-          table.board.right
-            for row in [3, 6, 9]
-              tr
-                td(id=row).cell
+                td(id=row).cell           
+          .inner-container
+            .msg
+              p.who-won A New Game
+              p Choose a Side
+              p.btn 
+                span#x.choice X 
+                span |
+                span#o.choice  O
+          #platform-l.platform           
+          #platform-r.platform
+          
+        table.board.left
+          for row in [1, 4, 7]
+            tr
+              td(id=row).cell
+              
+        table.board.right
+          for row in [3, 6, 9]
+            tr
+              td(id=row).cell
