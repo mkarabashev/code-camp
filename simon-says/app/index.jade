@@ -1,0 +1,31 @@
+doctype html
+html(lang="en")
+  head
+    title Simon Says
+    meta(charset="utf-8")
+    link(href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css')
+    
+  body
+    .container.center
+      .circle.center
+      #color-buttons
+        #tl.box
+        #tr.box
+        #bl.box
+        #br.box
+      #v.line.center
+      #h.line.center
+      #menu.center
+        h1 Simon
+          sup TM
+        .row
+          #counter.inline
+          #start.btn.inline
+          #strict.btn.inline
+        .row
+          p#counter-text.inline Counter
+          p#start-text.inline Start
+          p#strict-text.inline Strict
+        #indicator.dark
+        .slider-box
+          .slider

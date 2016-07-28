@@ -1,0 +1,44 @@
+.box
+  width: 50%
+  height: 50%
+  position: absolute
+  cursor: pointer
+
+#color-buttons .js-activate
+  +box-shadow(inset 0 0 0 0 rgba(0,0,0,0))
+
+#tl
+  background: #f7ff00
+  +box-shadow(inset 0 0 200px 4px rgba(145,134,19,1))
+  +border-radius(100% 0 0 0)
+
+  &:hover
+    +box-shadow(inset 0 0 0 0 rgba(145,134,19,1))
+
+#tr
+  background: #0033ff
+  +box-shadow(inset 0 0 200px 4px rgba(2,2,61,1))
+  +border-radius(0 100% 0 0)
+  left: 50%
+
+  &:hover
+    +box-shadow(inset 0 0 0 0 rgba(11,10,84,1))
+
+#bl
+  background: #33ff00
+  +box-shadow(inset 0px 0px 200px 4px rgba(10,82,17,1))
+  +border-radius(0 0 0 100%)
+  top: 50%
+
+  &:hover
+    +box-shadow(inset 0 0 0 0 rgba(10,82,17,1))
+
+#br
+  background: red
+  +box-shadow(inset 0 0 200px 4px rgba(138,5,5,1))
+  +border-radius(0 0 100% 0)
+  top: 50%
+  left: 50%
+
+  &:hover
+    +box-shadow(inset 0 0 0 0 rgba(138,5,5,1))

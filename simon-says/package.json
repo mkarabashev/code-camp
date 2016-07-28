@@ -1,11 +1,11 @@
 {
-  "name": "tic-tac-toe",
-  "version": "1.1.0",
+  "name": "simon-says",
+  "version": "0.0.1",
   "description": "a game of tic-tac-toe",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server",
+    "start": "./node_modules/.bin/webpack-dev-server --inline",
     "build": "./node_modules/.bin/webpack"
   },
   "repository": {
@@ -15,8 +15,7 @@
   "author": "Maxim Karabashev",
   "license": "MIT",
   "dependencies": {
-    "immutable": "^3.8.1",
-    "jquery": "^3.1.0"
+    "howler": "^2.0.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
