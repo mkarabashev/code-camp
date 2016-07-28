@@ -1,0 +1,20 @@
+.btn
+  position: absolute
+  height: 18px
+  width: 18px
+  top: 15%
+  +border-radius(50%)
+  border: 3px solid black
+  transition: 0s
+  cursor: pointer
+
+  &:active
+    +box-shadow(inset 1px 1px 2px 1px rgba(0,0,0,0.8))
+
+#start
+  background: red
+  left: 53%
+
+#strict
+  background: yellow
+  right: 13%
