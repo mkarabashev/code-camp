@@ -83,7 +83,20 @@ exports.png = function (paths) {
     module: {
       loaders: [
         {
-          test: /.png/,
+          test: /.png$/,
+          loaders: ['file?name=[path][name].[ext]?[hash]&context=' + paths],
+        }
+      ]
+    }
+  };
+};
+
+exports.mp3 = function (paths) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /.mp3$/,
           loaders: ['file?name=[path][name].[ext]?[hash]&context=' + paths],
         }
       ]

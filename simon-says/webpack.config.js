@@ -36,7 +36,8 @@ const common = merge(
   base,
   parts.jade(),
   parts.js(),
-  parts.png(PATHS.src)
+  parts.png(PATHS.src),
+  parts.mp3(PATHS.src)
 );
 
 var config;
