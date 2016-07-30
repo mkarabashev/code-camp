@@ -8,11 +8,14 @@ const sound4 = require('../assets/simonSound4.mp3');
 const error = require('../assets/beep.mp3');
 
 module.exports = (function () {
+  const fake = document.createElement('fakeElement');
+
   let game = false;
   let strict = false;
   let round = 0;
   let current = 0;
   let sequence = [];
+  let showingSeq = false;
 
   const mapToSound = {
     'tl': sound1,
@@ -34,37 +37,42 @@ module.exports = (function () {
   events.on('strict', (_strict) => strict = _strict);
 
   //render
-  function render(target, onPower = false) {
-    if (target) {
-      addClass(target, 'js-activate');
-      new Howl({ src: [mapToSound[ target.id ]] }).play();
-      window.setTimeout(() => removeClass(target, 'js-activate'), 500);
-    }
+  function renderMove(target) {
+    addClass(target, 'js-activate');
+    new Howl({ src: [mapToSound[ target.id ]] }).play();
+    window.setTimeout(() => removeClass(target, 'js-activate'), 500);
+  }
 
+  function renderDisplay(onPower = false) {
     if (onPower && display.innerHTML !== '') display.innerHTML = '';
     else display.innerHTML = round < 10 ? '0' + round : round;
   }
 
   function onClick(event) {
     function error() {
-      const fake = document.createElement('fakeElement');
       fake.id = 'fake';
 
       window.setTimeout(() => {
         current = 0;
-        render(fake);
+        renderMove(fake);
         strict ? onNewState() : showSequence();
       }, 600);
     }
 
-    if (!game || !event.target || !event.target.className === 'box') return;
-    render(event.target);
+    function nextRound() {
+      round++;
+      current = 0;
+      renderDisplay();
+      showSequence();
+    }
+
+    if (!game || showingSeq || !event.target || !event.target.className === 'box') return;
+    renderMove(event.target);
+
     event.target === btns[ sequence[current] ] ? current++ : error();
 
     if (current > round) {
-      round++;
-      current = 0;
-      showSequence();
+      nextRound();
     }
   }
 
@@ -77,7 +85,7 @@ module.exports = (function () {
       showSequence();
     }
 
-    render(null, onPower);
+    renderDisplay(onPower);
   }
 
   function makeSequence() {
@@ -87,10 +95,15 @@ module.exports = (function () {
   }
 
   function showSequence(i = 0) {
-    if (i <= round) window.setTimeout(() => {
-      render(btns[ sequence[i] ]);
-      showSequence(++i);
-    }, 600);
+    if (i <= round) {
+      showingSeq = true;
+      window.setTimeout(() => {
+        renderMove(btns[ sequence[i] ]);
+        showSequence(++i);
+      }, 600);
+    } else {
+      showingSeq = false;
+    }
   }
 
   function addClass(element, _class) {

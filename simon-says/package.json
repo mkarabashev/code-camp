@@ -1,6 +1,6 @@
 {
   "name": "simon-says",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "a game of tic-tac-toe",
   "main": "index.js",
   "scripts": {
