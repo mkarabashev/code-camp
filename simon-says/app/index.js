@@ -2,7 +2,7 @@ import browser from './browser/browser.js';
 import events from './events/events.js';
 import game from './game/game.js';
 
-const controls = (function () {
+const settings = (function () {
   const prefix = browser;
   const transform = prefix ? '-' + prefix + '-transform' : 'transform';
   let power = false;
