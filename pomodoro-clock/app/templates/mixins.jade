@@ -1,0 +1,18 @@
+mixin curvedText(text, reverse)
+  if reverse
+    - var textArray = text.split('').reverse()
+    - var textProps = 'reverse'
+    - var btnPos = 'lower'
+  else
+    - var textArray = text.split('')
+    - var textProps = 'normal'
+    - var btnPos = 'upper'
+  .box(class= btnPos)
+  each char, index in textArray
+    span(id=text + '-' + index)
+      div(class= textProps)= char
+      
+mixin setTime(name)
+  i(id= name + '-less').fa.fa-chevron-left
+  span(id= name + '-duration')  00&nbsp
+  i(id= name + '-more').fa.fa-chevron-right
