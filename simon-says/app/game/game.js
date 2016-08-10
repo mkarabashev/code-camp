@@ -1,5 +1,5 @@
 import events from '../events/events.js';
-import {Howl} from 'howler';
+import { Howl } from 'howler';
 
 const sound1 = require('../assets/simonSound1.mp3');
 const sound2 = require('../assets/simonSound2.mp3');

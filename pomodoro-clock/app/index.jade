@@ -1,0 +1,32 @@
+include ./templates/mixins
+
+doctype html
+html(lang="en")
+  head
+    title Simon Says
+    meta(charset="utf-8")
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Ubuntu+Mono' rel='stylesheet' type='text/css')
+
+  body
+    .container.center
+      #settings.large-text
+        #session
+          +curvedText('session', false)
+        #break
+          +curvedText('break', true)
+        #pause.hide
+          +curvedText('pause', false)
+        #reset.hide
+          +curvedText('reset', true)
+      #settings-menu.center.green
+        .session.small-text.btn
+          +setTime('session')
+        .break.small-text.btn
+          +setTime('break')
+      #timer-menu.center.minimize
+        #timer-border.attention.green
+        .firefox-nonsense
+          h2#timer 25:00
+      //header Pomodoro Clock
+      //footer Designed by Maxim Karabashev

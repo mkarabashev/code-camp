@@ -1,0 +1,50 @@
+=animate($name, $duration: 2s, $direction: alternate, $iteration: infinite)
+  -o-animation:
+    name: $name
+    iteration-count: $iteration
+    direction: $direction
+    duration: $duration
+
+  -moz-animation:
+    name: $name
+    iteration-count: $iteration
+    direction: $direction
+    duration: $duration
+
+  -webkit-animation:
+    name: $name
+    iteration-count: $iteration
+    direction: $direction
+    duration: $duration
+
+  animation:
+    name: $name
+    iteration-count: $iteration
+    direction: $direction
+    duration: $duration
+
+  @-webkit-keyframes #{$name}
+    @content
+
+  @-o-keyframes #{$name}
+    @content
+
+  @-moz-keyframes #{$name}
+    @content
+
+  @keyframes #{$name}
+    @content
+
+=transform($input)
+  -webkit-transform: $input
+  -moz-transform: $input
+  -ms-transform: $input
+  -o-transform: $input
+  transform: $input
+
+=rotated-text($name, $angle-span: 180deg, $angle-offset: 0deg)
+  $num-letters: str-length($name)
+  $angle-per-char: $angle-span / $num-letters
+  @for $i from 0 through $num-letters
+    ##{$name}-#{$i}
+      +transform(rotate($angle-offset + $angle-per-char * $i))

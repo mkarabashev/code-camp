@@ -1,0 +1,50 @@
+#timer-menu
+  width: 84px
+  height: 84px
+  background: white
+  font-size: 12px
+  border-radius: 50%
+
+
+#timer-border
+  position: absolute
+  right: -5px
+  bottom: -5px
+  width: 100%
+  height: 100%
+  border-radius: 50%
+
+.firefox-nonsense
+  width: 100%
+  height: 100%
+  display: table
+
+#timer
+  display: table-cell
+  vertical-align: middle
+
+.attention
+  +animate(attention)
+    from, 80%
+      +transform(scale(1, 1))
+    90%
+      +transform(scale(1.2, 1.2))
+    to
+      +transform(scale(1, 1))
+
+.blink
+  +animate(blinking)
+    from, 80%
+      opacity: 1
+    90%
+      opacity: 0.5
+    to
+      opacity: 1
+.maximize
+  transition: 0.2s
+  //transition-timing-function: cubic-bezier(0,-1,.62,4.2)
+  +transform(scale(3, 3))
+
+.minimize
+  transition: 0.2s
+  //transition-timing-function: cubic-bezier(0,-2.9,1,0)
