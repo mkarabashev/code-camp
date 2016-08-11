@@ -28,8 +28,8 @@ const settings = (function () {
   // render
   function renderSettings() {
     window.setTimeout(
-      () => changeElements(cssClass.switch, 'hide', ['settingsMenu'])
-      , 100
+      () => changeElements(cssClass.switch, 'hide', ['settingsMenu']),
+      100
     );
   }
 
