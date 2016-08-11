@@ -1,11 +1,5 @@
-.container
-  font-family: 'Ubuntu Mono'
-  width: 320px
-  height: 440px
-  text-align: center
-  -webkit-user-select: none
-  overflow: hidden
-  position: absolute
+body
+  background-color: $bg
 
 .center
   position: absolute
@@ -15,6 +9,18 @@
   left: 0
   margin: auto
 
+.container
+  width: 320px
+  height: 450px
+  text-align: center
+  +user-select(none)
+  overflow: hidden
+
+  @media screen and (max-height: 450px)
+    margin: 0 auto
+    height: 320px
+    width: 450px
+
 .large-text
   font-size: 40px
 
@@ -22,10 +28,9 @@
   font-size: 25px
 
 .blue
-  border: 5px solid blue
+  border-color: $blue
+  color: $blue
 
 .green
-  border: 5px solid green
-
-.red
-  border: 5px solid red
+  border-color: $green
+  color: $green

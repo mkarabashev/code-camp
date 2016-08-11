@@ -1,5 +1,5 @@
 import events from '../events/events.js'
-import cssClass from './cssClasses.js'
+import cssClass from '../libs/cssClasses.js'
 import { Howl } from 'howler';
 
 const beep = require('../assets/beep.mp3');
@@ -20,14 +20,26 @@ module.exports = (function () {
   // bind events
   timerMenu.addEventListener('click', switchScreen);
   events.on('reset', switchScreen);
-  events.on('pauseChanged', () => paused = !paused);
+  events.on('pauseChanged', pausedChange);
   events.on('sessionChanged', setSessionTime);
   events.on('breakChanged', setBreakTime);
-  events.on('switchMode', switchMode);
+  events.on('switchMode', renderMode);
 
   // render
+  function renderPause() {
+    paused ? cssClass.add(timer, 'blink') : cssClass.remove(timer, 'blink');
+  }
+
   function renderTime(time = session ? sessionTime : breakTime) {
     timer.innerHTML = secToTime(time);
+  }
+
+  function renderMode(mode) {
+    session = mode === 'session' ? true : false;
+    const color = session ? 'green' : 'blue';
+    cssClass.replaceColors(timerBorder, color);
+    cssClass.replaceColors(timer, color);
+    renderTime();
   }
 
   function renderScreen() {
@@ -38,26 +50,28 @@ module.exports = (function () {
 
     if (menu) {
       cssClass.remove(timerBorder, 'attention');
+      cssClass.replace(timerMenu, 'minimize', 'maximize');
       window.setTimeout(clock, 400);
     } else {
       window.setTimeout(() => cssClass.switch(timerBorder, 'attention'), 400);
+      cssClass.replace(timerMenu, 'maximize', 'minimize');
     }
 
     menu = !menu;
-    cssClass.switch(timerMenu, 'maximize');
-    cssClass.switch(timerMenu, 'minimize');
     renderTime();
   }
 
   function switchScreen() {
-    if (!animation) renderScreen();
+    if (!animation) {
+      paused = false;
+      renderScreen();
+      renderPause();
+    }
   }
 
-  function switchMode(mode) {
-    session = mode === 'session' ? true : false;
-    const color = session ? 'green' : 'blue';
-    cssClass.replaceLast(timerBorder, color);
-    renderTime();
+  function pausedChange() {
+    paused = !paused;
+    renderPause();
   }
 
   function clock() {
@@ -67,17 +81,16 @@ module.exports = (function () {
         if (!menu) renderTime(intervalTime);
       }
 
-      if (!intervalTime) {
+      if (!intervalTime && !paused && !menu) {
         clearInterval(interval);
         new Howl({ src: beep }).play();
         session = !session;
-        events.emit('modeChanged', session ? 'sesssion' : 'break');
+        events.emit('modeChanged', session ? 'session' : 'break');
         clock();
       }
 
       if (menu) clearInterval(interval);
     }
-
     let intervalTime = session ? sessionTime : breakTime;
     const interval = window.setInterval(countDown, 1000);
   }

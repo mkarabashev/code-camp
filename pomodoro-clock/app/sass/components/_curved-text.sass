@@ -3,6 +3,11 @@
 +rotated-text('pause', 80deg, -32deg)
 +rotated-text('reset', 80deg, 148deg)
 
+@media screen and (max-height: 450px)
+  +rotated-text('session', 100deg, 47deg)
+  +rotated-text('break', 80deg, 238deg)
+  +rotated-text('pause', 80deg, 58deg)
+  +rotated-text('reset', 80deg, 238deg)
 
 .reverse
   +transform(rotate(180deg))
@@ -16,12 +21,8 @@
   height: 220px
   left: 150px
   position: absolute
-  transform-origin: bottom center
+  +transform-origin(bottom center)
 
-.hide-upper
-  transition: 0.5s
-  transform: translateY(100px)
-
-.hide-lower
-  transition: 0.5s
-  transform: translateY(-100px)
+  @media screen and (max-height: 450px)
+      left: 225px
+      top: -50px

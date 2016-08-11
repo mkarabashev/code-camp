@@ -11,13 +11,13 @@ html(lang="en")
   body
     .container.center
       #settings.large-text
-        #session
+        #session.green
           +curvedText('session', false)
-        #break
+        #break.green
           +curvedText('break', true)
-        #pause.hide
+        #pause.hide.green
           +curvedText('pause', false)
-        #reset.hide
+        #reset.hide.green
           +curvedText('reset', true)
       #settings-menu.center.green
         .session.small-text.btn
@@ -25,8 +25,9 @@ html(lang="en")
         .break.small-text.btn
           +setTime('break')
       #timer-menu.center.minimize
-        #timer-border.attention.green
-        .firefox-nonsense
-          h2#timer 25:00
+        #timer-border.attention.green.center
+        #timer-inner.center
+          .firefox-nonsense
+            h2#timer.green 25:00
       //header Pomodoro Clock
       //footer Designed by Maxim Karabashev

@@ -1,6 +1,6 @@
 {
   "name": "pomodoro-clock",
-  "version": "0.9.1",
+  "version": "1.0.0",
   "description": "a timer that helps people be more productive",
   "main": "index.js",
   "scripts": {

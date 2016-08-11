@@ -1,18 +1,23 @@
 #timer-menu
-  width: 84px
-  height: 84px
-  background: white
-  font-size: 12px
-  border-radius: 50%
+  width: 92px
+  height: 92px
+  cursor: pointer
 
+#timer-inner
+  width: (80 / 92) * 100%
+  height: (80 / 92) * 100%
+  background: $bg
+  font-size: 12px
+  +border-radius(50%)
 
 #timer-border
   position: absolute
-  right: -5px
-  bottom: -5px
-  width: 100%
-  height: 100%
-  border-radius: 50%
+  width: (82 / 92) * 100%
+  height: (82 / 92) * 100%
+  +border-radius(50%)
+  border:
+    width: 1px
+    style: solid
 
 .firefox-nonsense
   width: 100%
@@ -33,18 +38,15 @@
       +transform(scale(1, 1))
 
 .blink
-  +animate(blinking)
-    from, 80%
+  +animate(blinking, 1s)
+    from, 70%
       opacity: 1
-    90%
-      opacity: 0.5
-    to
-      opacity: 1
+    71%, to
+      opacity: 0
+
 .maximize
-  transition: 0.2s
-  //transition-timing-function: cubic-bezier(0,-1,.62,4.2)
+  +transition(0.2s)
   +transform(scale(3, 3))
 
 .minimize
-  transition: 0.2s
-  //transition-timing-function: cubic-bezier(0,-2.9,1,0)
+  +transition(0.2s)

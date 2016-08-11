@@ -48,3 +48,27 @@
   @for $i from 0 through $num-letters
     ##{$name}-#{$i}
       +transform(rotate($angle-offset + $angle-per-char * $i))
+
+=border-radius($input)
+  -webkit-border-radius: $input
+  -moz-border-radius: $input
+  border-radius: $input
+
+=user-select($input)
+  -webkit-user-select: $input
+  -moz-user-select: $input
+  -ms-user-select: $input
+  user-select: $input
+
+=transform-origin($input)
+  -webkit-transform-origin: $input
+  -moz-transform-origin: $input
+  -ms-transform-origin: $input
+  -o-transform-origin: $input
+  transform-origin: $input
+
+=transition($time)
+  -webkit-transition: $time
+  -moz-transition: $time
+  -o-transition: $time
+  transition: $time

@@ -1,18 +1,20 @@
 #settings-menu
-  background: white
+  background: $bg
   width: 273px
   height: 273px
-  //border: 5px solid
-  border-radius: 50%
+  +border-radius(50%)
+  border:
+    width: 5px
+    style: solid
 
 .session
   position: absolute
-  top: 8%
+  top: 10%
   width: 100%
 
 .break
   position: absolute
-  bottom: 8%
+  bottom: 10%
   width: 100%
 
 .box
@@ -27,8 +29,14 @@
 #reset,
 #pause,
 #break,
-#session,
+#session
   cursor: pointer
 
-  &:active
-    text-shadow: 2px 2px #ff0000
+  &:hover
+    text-shadow: 2px 2px 20px white
+
+#session-less,
+#session-more,
+#break-less,
+#break-more
+  cursor: pointer
