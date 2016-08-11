@@ -3,13 +3,15 @@
   width: 40%
   height: 40%
   background: #ddd
-  border: 2.5vmin solid #222
+  border: 20px solid #222
+  border: 0.03 * $size solid #222
   +border-radius(50%)
   text-align: center
 
 h1
   margin-top: 12%
   font-size: 2em
+  font-size: 0.07 * $size
   margin-bottom: 7%
 
 .row
@@ -24,7 +26,12 @@ h1
 
 p.inline
   font-size: 1em
+  font-size: 0.03 * $size
   top: 20%
+
+  @media screen and (max-width: 450px)
+    font-size: 1em
+    font-size: 0.035 * $size
 
 #start-text
   left: 45%
