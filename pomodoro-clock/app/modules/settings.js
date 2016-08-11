@@ -1,10 +1,10 @@
-import Slider from './slider.js';
+import slider from './slider.js';
 import events from '../events/events.js';
 import cssClass from '../libs/cssClasses.js';
 
 const settings = (function () {
-  const sessionSettings= new Slider('session', 25);
-  const breakSettings = new Slider('break', 5);
+  const sessionSettings= slider('session', 25);
+  const breakSettings = slider('break', 5);
   let _mode = 'session';
   let pause = false;
 
