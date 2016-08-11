@@ -3,6 +3,7 @@ html(lang="en")
   head
     title Simon Says
     meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=3")
     link(href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css')
     
   body
@@ -20,12 +21,15 @@ html(lang="en")
           sup TM
         .row
           #counter.inline
-          #start.btn.inline
-          #strict.btn.inline
+          #start
+            .start-btn.btn.inline
+          #strict
+            .strict-btn.btn.inline
         .row
           p#counter-text.inline Counter
           p#start-text.inline Start
           p#strict-text.inline Strict
         #indicator.dark
         .slider-box
-          .slider
+          .slider-visible-box.center
+            .slider

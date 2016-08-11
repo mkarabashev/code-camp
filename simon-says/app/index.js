@@ -3,7 +3,7 @@ import events from './events/events.js';
 import game from './game/game.js';
 
 const settings = (function () {
-  const prefix = browser;
+  const prefix = browser.browser;
   const transform = prefix ? '-' + prefix + '-transform' : 'transform';
   let power = false;
   let isStrict = false;

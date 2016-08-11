@@ -15,5 +15,17 @@ module.exports = (function () {
       }
     }
   }
-  return browserCheck();
+
+  function touchCheck() {
+    if (!('ontouchstart' in document.documentElement)) {
+      document.body.className += ' no-touch';
+      return false;
+    }
+    return true;
+  }
+
+  return {
+    browser: browserCheck(),
+    touch: touchCheck()
+  }
 })();

@@ -1,23 +1,39 @@
-.btn
+#start
+  left: 45%
+
+#strict
+  right: 7%
+
+#start,
+#strict
+  z-index: 1
   position: absolute
+  top: -80%
+  width: 40px
+  width: 0.09 * $size
+  height: 280%
+
+  &:active
+    .btn
+      +box-shadow(inset 1px 1px 2px 1px rgba(0,0,0,0.8))
+
+.btn
   height: 18px
   width: 18px
   height: 0.025 * $size
   width: 0.025 * $size
-  top: 15%
+  top: 37%
+  left: 0
+  right: 0
+  margin: auto
   +border-radius(50%)
   border: 3px solid black
-  border: 0.006 * $size solid #222
+  border: 0.006 * $size solid $dark-grey
   transition: 0s
   cursor: pointer
 
-  &:active
-    +box-shadow(inset 1px 1px 2px 1px rgba(0,0,0,0.8))
-
-#start
+.start-btn
   background: red
-  left: 53%
 
-#strict
+.strict-btn
   background: yellow
-  right: 13%
