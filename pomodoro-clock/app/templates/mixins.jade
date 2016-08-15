@@ -13,6 +13,6 @@ mixin curvedText(text, reverse)
       div(class= textProps)= char
       
 mixin setTime(name)
-  i(id= name + '-less').fa.fa-chevron-left
-  span(id= name + '-duration')  00&nbsp
-  i(id= name + '-more').fa.fa-chevron-right
+  span(id= name + '-less').btn <i class='fa fa-chevron-left'></i>
+  span(id= name + '-duration') 00
+  span(id= name + '-more').btn <i class='fa fa-chevron-right'></i>
