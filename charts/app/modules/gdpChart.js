@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 import c3 from 'c3';
-import { evalHeight } from '../lib/responsive';
+import * as d3 from 'd3';
+import { months, evalHeight } from '../lib/utils';
 
 let chart;
 
@@ -39,9 +40,14 @@ const attributes = {
         text: 'Billions of Dollars',
         position: 'inner-middle'
       },
-      /*tick: {
+      tick: {
         format: d3.format('$,')
-      }*/
+      }
+    }
+  },
+  tooltip: {
+    format: {
+      title: (d) => `${months[d.getMonth()]} ${d.getFullYear()}`
     }
   }
 };

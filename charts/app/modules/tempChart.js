@@ -1,8 +1,8 @@
 import c3 from 'c3';
-import { evalHeight } from '../lib/responsive';
+import { months, evalHeight } from '../lib/utils';
 
 const dataUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json';
-const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
 const data = months.map(month => {
   let row = [];
   for (let i = 0; i < 263; i++) {
@@ -71,6 +71,12 @@ const attributes = {
   bar: {
     width: {
       ratio: 1
+    }
+  },
+  tooltip: {
+    grouped: false,
+    format: {
+      value: (val, ratio, id, i) => `${temp[`${1753 + i}:${id}`].toFixed(2)} Degrees`
     }
   },
   legend: {
