@@ -1,7 +1,9 @@
 import 'whatwg-fetch';
 import c3 from 'c3';
 import { evalHeight } from '../lib/responsive';
+
 let chart;
+
 const attributes = {
   size: {
     height: evalHeight(window.innerHeight)
@@ -13,7 +15,7 @@ const attributes = {
     right: 10
   },
   title:  {
-    text: "US Gross Domestic Product by Quarter"
+    text: 'US Gross Domestic Product by Quarter'
   },
   bindto: '#gdp-chart',
   data: {
@@ -37,9 +39,9 @@ const attributes = {
         text: 'Billions of Dollars',
         position: 'inner-middle'
       },
-      tick: {
-        format: d3.format("$,")
-      }
+      /*tick: {
+        format: d3.format('$,')
+      }*/
     }
   }
 };
@@ -54,9 +56,3 @@ fetch(dataUrl)
     attributes.data.rows = data;
     chart = c3.generate(attributes);
   }).catch(ex => console.log('parsing failed', ex));
-
-//export const dynamicGDP;
-
-//export const dynamicDoping;
-
-//export const dynamicTemp;

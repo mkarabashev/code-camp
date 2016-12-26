@@ -41,6 +41,7 @@ const common = merge(
   base,
   parts.jade(),
   parts.js(),
+  parts.eslint(),
   parts.png(PATHS.src),
   parts.mp3(PATHS.src),
   parts.fontAwesome(PATHS.fa)

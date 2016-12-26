@@ -1,6 +1,5 @@
 import c3 from 'c3';
 import { evalHeight } from '../lib/responsive';
-import dopingData from '../data/dopingData';
 
 const dataUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/global-temperature.json';
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -10,10 +9,11 @@ const data = months.map(month => {
     row[i] = 1;
   }
   return [month].concat(row);
-})
+});
+
 let chart;
-console.log(data)
 let temp = {};
+
 const attributes = {
   size: {
     height: evalHeight(window.innerHeight)
@@ -25,7 +25,7 @@ const attributes = {
     right: 10
   },
   title:  {
-    text: "Monthly Global Land-Surface Temperature",
+    text: 'Monthly Global Land-Surface Temperature',
   },
   bindto: '#temp-chart',
   data: {
@@ -87,21 +87,21 @@ const getYears = data => {
   }
 
   return arr;
-}
+};
 
 const getTemp = data => {
   let dict = {};
   for (let entry of data.monthlyVariance) {
-    dict[entry.year + ':' + months[entry.month - 1]] = data.baseTemperature + entry.variance
+    dict[entry.year + ':' + months[entry.month - 1]] = data.baseTemperature + entry.variance;
   }
 
   return dict;
-}
+};
 
 fetch(dataUrl)
   .then(response => response.json())
   .then(json => {
     temp = getTemp(json);
     attributes.data.columns.push(getYears(json));
-    chart = c3.generate(attributes)
+    chart = c3.generate(attributes);
   }).catch(ex => console.log('parsing failed', ex));

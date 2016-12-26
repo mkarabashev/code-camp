@@ -1,4 +1,4 @@
-import bootstrap from 'bootstrap';
+import 'bootstrap';
 import './modules/chart';
 
 const $nav = $('.nav');

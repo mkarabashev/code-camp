@@ -1,6 +1,5 @@
 import c3 from 'c3';
 import { evalHeight } from '../lib/responsive';
-import dopingData from '../data/dopingData';
 
 const dataUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/cyclist-data.json';
 let chart;
@@ -15,7 +14,7 @@ const attributes = {
     right: 10
   },
   title:  {
-    text: "Doping in Professional Bicycle Racing",
+    text: 'Doping in Professional Bicycle Racing',
   },
   bindto: '#doping-chart',
   data: {
@@ -53,7 +52,7 @@ const findMin = data => {
     min = Math.min(min, entry.Seconds);
   }
   return min;
-}
+};
 
 const convertData = (data) => {
   for (let entry of data) {
@@ -64,7 +63,7 @@ const convertData = (data) => {
   }
 
   return data;
-}
+};
 
 fetch(dataUrl)
   .then(response => response.json())

@@ -40,6 +40,20 @@ exports.devServer = function(options) {
   };
 }
 
+exports.eslint = function (path) {
+  return {
+    module: {
+      preLoaders: [
+        {
+          test: /\.(js|jsx)$/,
+          loader: 'eslint-loader',
+          exclude: /node_modules/
+        }
+      ]
+    }
+  };
+};
+
 exports.setupCSS = function () {
   return {
     module: {
