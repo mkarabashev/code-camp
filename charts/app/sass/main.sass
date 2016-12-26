@@ -1,0 +1,22 @@
+.contain
+  width: 80%
+
+.center
+  position: relative
+  left: 0
+  right: 0
+  top: 0
+  bottom: 0
+  margin: auto
+
+.chart
+  position: absolute
+
+#temp-chart
+  .c3-axis-x .tick line,
+  .c3-axis-y .tick line
+    display: none
+
+@media screen and (max-width: 480px)
+  .contain
+    width: 100%

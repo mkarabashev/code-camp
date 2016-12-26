@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const pkg = require('./package.json');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+const PurifyCSSPlugin = require('purifycss-webpack-plugin');
 
 exports.devServer = function(options) {
   return {
@@ -57,7 +58,7 @@ exports.SASS = function () {
     module: {
       loaders: [
         {
-          test: /\.sass$|\.scss$/,
+          test: /\.s(c|a)ss$/,
           loaders: ['style', 'css', 'sass'],
         }
       ]
@@ -202,7 +203,7 @@ exports.extractSASS = function () {
       loaders: [
         // Extract CSS during build
         {
-          test: /\.scss$|\.sass$/,
+          test: /\.s(c|a)ss$/,
           loader: ExtractTextWebpackPlugin.extract('style', ['css', 'sass']),
         }
       ]
@@ -214,11 +215,8 @@ exports.extractSASS = function () {
   };
 };
 
-exports.fontAwesome = function (paths) {
+exports.fontAwesome = function () {
   return {
-    entry: {
-      fa: paths
-    },
     module: {
       loaders: [
         // the url-loader uses DataUrls.
@@ -229,3 +227,17 @@ exports.fontAwesome = function (paths) {
     }
   }
 }
+
+exports.purifyCSS = function(paths) {
+  return {
+    plugins: [
+      new PurifyCSSPlugin({
+        basePath: process.cwd(),
+        // `paths` is used to point PurifyCSS to files not
+        // visible to Webpack. You can pass glob patterns
+        // to it.
+        paths: paths
+      }),
+    ]
+  }
+};

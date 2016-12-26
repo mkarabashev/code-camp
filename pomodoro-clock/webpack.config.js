@@ -8,8 +8,10 @@ const parts = require('./parts.js');
 const PATHS = {
   src: path.join(__dirname, 'app'),
   jade: path.join(__dirname, 'app', 'index.jade'),
-  style: path.join(__dirname, '/app/sass', 'main.sass'),
-  fa: path.join(__dirname, '/node_modules/font-awesome/scss', 'font-awesome.scss'),
+  style: [
+    path.join(__dirname, '/app/sass', 'main.sass'),
+    path.join(__dirname, '/node_modules/font-awesome/scss', 'font-awesome.scss')
+  ],
   build: path.join(__dirname, 'dist')
 }
 
@@ -39,7 +41,7 @@ const common = merge(
   parts.js(),
   parts.png(PATHS.src),
   parts.mp3(PATHS.src),
-  parts.fontAwesome(PATHS.fa)
+  parts.fontAwesome()
 );
 
 var config;
@@ -58,6 +60,10 @@ switch(process.env.npm_lifecycle_event) {
       parts.clean(PATHS.build),
       parts.extractVendors(),
       parts.extractSASS(),
+      parts.purifyCSS([
+        'app/index.jade',
+        'app/templates/mixins.jade'
+      ]),
       parts.minify()
     );
     break;

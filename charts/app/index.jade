@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  head
+    title US GDP data
+    meta(charset="utf-8")
+    
+  body
+    .contain.center
+      ul.nav.nav-tabs
+        li#gdp.active(role="presentation") <a href="#">US GDP
+        li#doping(role="presentation") <a href="#">Doping
+        li#temperature(role="presentation") <a href="#">Temperature
+      .chart-container
+        #gdp-chart.chart
+        #doping-chart.chart
+        #temp-chart.chart

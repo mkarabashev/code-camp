@@ -3,12 +3,6 @@
 +rotated-text('pause', 80deg, -32deg)
 +rotated-text('reset', 80deg, 148deg)
 
-@media screen and (max-height: 450px)
-  +rotated-text('session', 100deg, 47deg)
-  +rotated-text('break', 80deg, 238deg)
-  +rotated-text('pause', 80deg, 58deg)
-  +rotated-text('reset', 80deg, 238deg)
-
 .reverse
   +transform(rotate(180deg))
 
@@ -23,6 +17,42 @@
   position: absolute
   +transform-origin(bottom center)
 
-  @media screen and (max-height: 450px)
+.box
+  position: absolute
+  width: 100%
+  height: 80px
+  overflow: hidden
+
+.lower
+  bottom: 0
+
+@media screen and (max-height: 450px) and (min-width: 450px)
+  +rotated-text('session', 100deg, 47deg)
+  +rotated-text('break', 100deg, 230deg)
+  +rotated-text('pause', 80deg, 58deg)
+  +rotated-text('reset', 80deg, 238deg)
+
+  #settings span
     left: 225px
     top: -50px
+
+  .box
+    +transform(rotate(90deg))
+
+  .lower
+    left: -40%
+
+  .upper
+    right: -40%
+
+  .lower,
+  .upper
+    bottom: 0
+    top: 0
+    margin: auto
+
+  .normal
+    +transform(rotate(-90deg))
+
+  .reverse
+    +transform(rotate(90deg))

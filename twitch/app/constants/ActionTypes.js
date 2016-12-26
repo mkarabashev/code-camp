@@ -1,0 +1,5 @@
+export const ADD_CHANNEL = 'ADD_CHANNEL';
+export const REMOVE_CHANNEL = 'REMOVE_CHANNEL';
+export const REQUEST_DATA = 'REQUEST_DATA';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const INVALIDATE_DATA = 'INVALIDATE_DATA';

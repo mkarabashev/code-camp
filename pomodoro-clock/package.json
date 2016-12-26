@@ -31,6 +31,7 @@
     "jade-html-loader": "0.0.3",
     "jade-loader": "^0.8.0",
     "node-sass": "^3.8.0",
+    "purifycss-webpack-plugin": "^2.0.3",
     "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
