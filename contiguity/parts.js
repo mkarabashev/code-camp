@@ -40,6 +40,20 @@ exports.devServer = function(options) {
   };
 }
 
+exports.eslint = function (path) {
+  return {
+    module: {
+      preLoaders: [
+        {
+          test: /\.(js|jsx)$/,
+          loader: 'eslint-loader',
+          exclude: /node_modules/
+        }
+      ]
+    }
+  };
+};
+
 exports.setupCSS = function () {
   return {
     module: {
@@ -204,7 +218,7 @@ exports.extractSASS = function () {
         // Extract CSS during build
         {
           test: /\.s(c|a)ss$/,
-          loader: ExtractTextWebpackPlugin.extract('style', ['css', 'sass']),
+          loader: ExtractTextWebpackPlugin.extract('style', ['css', 'sass'])
         }
       ]
     },

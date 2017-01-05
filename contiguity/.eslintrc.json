@@ -1,0 +1,25 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "off",
+    "indent": [
+        "warn",
+        2
+    ],
+    "quotes": [
+        "warn",
+        "single"
+    ],
+    "semi": [
+        "warn",
+        "always"
+    ]
+  }
+}

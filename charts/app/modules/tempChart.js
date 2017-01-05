@@ -105,7 +105,7 @@ const getTemp = data => {
 };
 
 fetch(dataUrl)
-  .then(response => response.json())
+  .then(res => res.ok ? res.json() : console.log('Response was not OK'))
   .then(json => {
     temp = getTemp(json);
     attributes.data.columns.push(getYears(json));

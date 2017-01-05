@@ -26,18 +26,15 @@ const attributes = {
       value: ['Place']
     },
     type: 'scatter',
-    colors: {
-      Place: 'black'
-    },
     color: (color, d) => {
       return typeof d.index === 'number' &&
         !!attributes.data.json[d.index].Doping.length
           ? 'red'
-          : color;
+          : 'grey';
     }
   },
   legend: {
-    show: false
+    hide: true
   },
   axis: {
     x: {
@@ -118,7 +115,7 @@ const addPointLabels = (chart, data) => {
 };
 
 fetch(dataUrl)
-  .then(response => response.json())
+  .then(res => res.ok ? res.json() : console.log('Response was not OK'))
   .then(json => {
     json.min = findMin(json);
     json = convertData(json);

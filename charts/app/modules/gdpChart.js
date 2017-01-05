@@ -55,7 +55,7 @@ const attributes = {
 const dataUrl = 'https://raw.githubusercontent.com/FreeCodeCamp/ProjectReferenceData/master/GDP-data.json';
 
 fetch(dataUrl)
-  .then(response => response.json())
+  .then(res => res.ok ? res.json() : console.log('Response was not OK'))
   .then(json => json.data)
   .then(data => {
     data = [['Date', 'US GDP']].concat(data);

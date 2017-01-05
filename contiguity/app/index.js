@@ -12,7 +12,7 @@ const boundCoords = (direction, val, offset = 10) => {
   if (val < lo) return lo + offset;
   if (val > hi) return hi - offset;
   return val;
-}
+};
 
 const svg = d3.select('body')
   .append('svg')
@@ -26,23 +26,23 @@ const tooltip = d3.select('body').append('div')
 const dragStarted = d => {
   if (!d3.event.active) simulation.alphaTarget(0.3).restart();
   d.fx = d.x;
-  d.fy = d.y
-}
+  d.fy = d.y;
+};
 
 const dragged = d => {
   d.fx = d3.event.x;
   d.fy = d3.event.y;
-}
+};
 
 const dragEnded = d => {
   if (!d3.event.active) simulation.alphaTarget(0);
   d.fx = null;
   d.fy = null;
-}
+};
 
 const simulation = d3.forceSimulation()
   .force('link', d3.forceLink().id((d) => d.index).distance(50))
-  .force('collide', d3.forceCollide((d) => 12))
+  .force('collide', d3.forceCollide(() => 12))
   .force('center', d3.forceCenter(width / 2, height / 2))
   .force('charge', d3.forceManyBody().strength(-100).distanceMax(150));
 
@@ -74,9 +74,9 @@ const render = data => {
         .style('left', boundCoords('x', d.x) + 'px')
         .style('top', (boundCoords('y', d.y) + 15) + 'px');
     })
-    .on('mouseout', (d) => {
+    .on('mouseout', () => {
       tooltip.transition()
-        .style('opacity', 0)
+        .style('opacity', 0);
     });
 
   const ticked = () => {
@@ -89,11 +89,11 @@ const render = data => {
     node
       .style('left', (d) => boundCoords('x', d.x) + 'px')
       .style('top', (d) => boundCoords('y', d.y) + 'px');
-  }
+  };
 
   simulation
     .nodes(data.nodes)
-    .on('tick', ticked)
+    .on('tick', ticked);
 
   simulation.force('link')
     .links(data.links);
