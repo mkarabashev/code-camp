@@ -1,0 +1,63 @@
+.group
+  position: relative
+  margin-bottom: 25px
+  color: $secondaryColor
+
+  input
+    display: block
+    width: 90%
+    padding: 0 30px 15px 10px
+    border: none
+    font-size: 18px
+
+    &:focus
+      outline: none
+
+  label
+    position: absolute
+    font:
+      size: 18px
+      weight: normal
+    top: 5px
+    left: 5px
+    transition: 0.2s ease all
+    pointer-events: none
+
+  input:focus ~ label, input:valid ~ label
+    top: -20px
+    font-size: 14px
+    color: $primaryColor
+
+  .bar
+    position: relative
+    display: block
+    width: 100%
+
+    &:before, &:after
+      content: ''
+      position: absolute
+      background: $secondaryColor
+      width: 50%
+      height: 1px
+      bottom: 1px
+      transition: 0.2s ease all
+
+    &:before
+      left: 50%
+
+    &:after
+      right: 50%
+
+  input:focus ~ .bar:before, input:focus ~ .bar:after
+    background: $primaryColor
+    height: 2px
+
+  #add
+    position: absolute
+    color: $secondaryColor
+    top: 5px
+    right: 0
+    z-index: 2
+
+  input:focus ~ #add
+    color: $primaryColor

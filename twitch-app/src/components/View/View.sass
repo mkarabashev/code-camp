@@ -1,0 +1,56 @@
+$primaryColor: purple
+$secondaryColor: grey
+
+[required]
+  box-shadow: none
+
+header h1
+  color: $primaryColor
+
+.btn
+  background: white
+  border: none
+  font-size: 1em
+  cursor: pointer
+  color: $primaryColor
+
+  .fa-refresh
+    color: $secondaryColor
+
+  &:active > .fa-refresh
+    color: $primaryColor
+
+.flex
+  display: flex
+  flex-wrap: no wrap
+  justify-content: space-between
+  align-items: center
+  margin-bottom: 20px
+
+.extra-space
+  margin-top: 100px
+
+  @media screen and (max-width: 650px)
+    margin-top: 0
+
+.results
+  transition: 0.2s ease all
+  transition-delay: 0.4s
+
+.container
+  position: relative
+  width: 600px
+  margin-top: 40px
+  margin-left: auto
+  margin-right: auto
+
+  @media screen and (max-width: 600px)
+    width: 90%
+    margin-top: 1px
+
+  a:link, a:visited
+    text-decoration: none
+    color: purple
+
+  a:hover
+    text-decoration: underline

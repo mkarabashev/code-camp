@@ -1,0 +1,37 @@
+$primaryColor: purple
+$secondaryColor: grey
+
+#filter
+  position: relative
+  margin-left: 10px
+  padding-bottom: 5px
+  color: purple
+
+  .fa
+    position: absolute
+    color: $secondaryColor
+    left: 0
+    top: 1px
+
+  select
+    width: 100px
+    padding-left: 15px
+    border: none
+    color: $secondaryColor
+
+    -moz-appearance: none
+    -o-appearance: none
+    -webkit-appearance: none
+    appearance: none
+
+    background-image: linear-gradient(45deg, transparent 50%, $secondaryColor 50%), linear-gradient(135deg, $secondaryColor 50%, transparent 50%)
+    background-position: calc(100% - 10px) calc(8px), calc(100% - 5px) calc(8px)
+    background-size: 5px 5px, 5px 5px
+    background-repeat: no-repeat
+
+    &:focus
+      color: $primaryColor
+      background-image: linear-gradient(45deg, transparent 50%, $primaryColor 50%), linear-gradient(135deg, $primaryColor 50%, transparent 50%)
+
+    &:focus ~ .fa
+      color: $primaryColor
