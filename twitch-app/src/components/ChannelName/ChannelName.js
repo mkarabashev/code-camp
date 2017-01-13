@@ -1,5 +1,6 @@
 import React from 'react';
-import './ChannelName';
+import { defLogo } from '../../utils/urls';
+import './ChannelName.sass';
 
 const ChannelName = ({ logo, displayName, lastUpdated, url }) => (
   <div className='left-side-entry'>

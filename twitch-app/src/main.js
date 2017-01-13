@@ -2,12 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import createStore from './store/createStore'
 import AppContainer from './containers/AppContainer'
+import userChannels from './utils/default'
+import { addChannel } from './actions'
+import '../node_modules/font-awesome/scss/font-awesome.scss'
+
 
 // ========================================================
 // Store Instantiation
 // ========================================================
 const initialState = window.___INITIAL_STATE__
 const store = createStore(initialState)
+
+for (let channel of userChannels) {
+  store.dispatch(addChannel(channel))
+}
 
 // ========================================================
 // Render Setup

@@ -1,4 +1,12 @@
-import { ADD_CHANNEL, REQUIRE_DATA, RECEIVE_DATA, INVALIDATE_DATA, DELETE_CHANNEL } from '../constants';
+import {
+  ADD_CHANNEL,
+  REQUIRE_DATA,
+  RECEIVE_DATA,
+  INVALIDATE_DATA,
+  DELETE_CHANNEL,
+  OFFLINE,
+  MISSING
+} from '../constants';
 import { Map } from 'immutable';
 
 const channelReducer = (state = {}, action) => {

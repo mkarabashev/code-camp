@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Search from '../components/Search';
+import { getInt, setInt } from '../utils/misc';
 import {
   addChannel,
   fetchDataIfNeeded,
@@ -45,11 +46,11 @@ const mapDispatchToProps = dispatch => {
         results: 'results ' + (input.value !== '' ? 'extra-space' : '')
       }));
 
-      clearInterval(queryInterval)
-      queryInterval = window.setTimeout(
+      clearInterval(getInt())
+      setInt(window.setTimeout(
         () => onStopping(input),
         500
-      );
+      ));
     }
   };
 };

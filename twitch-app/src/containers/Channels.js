@@ -15,7 +15,7 @@ class Channels extends Component {
 
   componentWillReceiveProps(nextProps) {
     const { channels } = nextProps;
-    if (hasLocalStorage) localStorage.setItem('twitchViewerMK', channels);
+    if (window.hasLocalStorage) localStorage.setItem('twitchViewerMK', channels);
   }
 
   render() {
