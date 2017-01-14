@@ -9,7 +9,7 @@ import {
   fetchSuggestionsIfNeeded
 } from '../actions';
 
-console.log(changeClassName)
+console.log(changeClassName);
 
 const mapStateToProps = state => {
   return {
@@ -22,7 +22,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddClick: (e, input) => {
       e.preventDefault();
-      const channel = input.value.trim()
+      const channel = input.value.trim();
 
       if (channel) {
         dispatch(addChannel(channel));
@@ -30,10 +30,10 @@ const mapDispatchToProps = dispatch => {
       }
 
       dispatch(addQuery(''));
-      dispatch(changeClassName({ results: 'results'}))
+      dispatch(changeClassName({ results: 'results' }));
       input.value = '';
     },
-    onBlur: () => dispatch(changeClassName({ results: 'results'})),
+    onBlur: () => dispatch(changeClassName({ results: 'results' })),
     onWritingText: input => {
       const onStopping = input => {
         if (!input) return dispatch(addQuery(''));
@@ -46,7 +46,7 @@ const mapDispatchToProps = dispatch => {
         results: 'results ' + (input.value !== '' ? 'extra-space' : '')
       }));
 
-      clearInterval(getInt())
+      clearInterval(getInt());
       setInt(window.setTimeout(
         () => onStopping(input),
         500

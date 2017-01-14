@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Controls from '../components/Controls';
+import ControlBox from '../components/ControlBox';
 import { invalidateData, fetchDataIfNeeded, setFilter } from '../actions';
 
 const mapStateToProps = state => {
@@ -26,4 +26,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Controls);
+)(ControlBox);

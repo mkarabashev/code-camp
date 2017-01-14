@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ALL, ONLINE, OFFLINE, MISSING } from '../constants';
 import { fetchDataIfNeeded, deleteChannel } from '../actions';
@@ -6,19 +6,19 @@ import ChannelBox from '../components/ChannelBox';
 
 class Channels extends Component {
 
-  componentDidMount() {
+  componentDidMount () {
     const { channels, fetchDataIfNeeded } = this.props;
     for (let channel of channels.keySeq()) {
       fetchDataIfNeeded(channel);
     }
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     const { channels } = nextProps;
-    if (window.hasLocalStorage) localStorage.setItem('twitchViewerMK', channels);
+    if (window.localStorage) window.localStorage.setItem('twitchViewerMK', channels);
   }
 
-  render() {
+  render () {
     const { results, filteredChannels, deleteChannel } = this.props;
 
     return (
@@ -35,15 +35,23 @@ class Channels extends Component {
   }
 };
 
+Channels.propTypes = {
+  filteredChannels: PropTypes.array.isRequired,
+  channels: PropTypes.object.isRequired,
+  results: PropTypes.string.isRequired,
+  fetchDataIfNeeded: PropTypes.func.isRequired,
+  deleteChannel: PropTypes.func.isRequired
+};
+
 const filterChannels = (channels, criteria) =>
   channels.filter(channel => criteria === ONLINE
     ? channel.status !== OFFLINE && channel.status !== MISSING
     : channel.status === criteria);
 
 const orderChannels = (channels, filter, query) => {
-  const orderByName = channels.sort((a, b) => a.displayName > b.displayName)
+  const orderByName = channels.sort((a, b) => a.displayName > b.displayName);
 
-  const limitToQuery = channels.filter(
+  const limitToQuery = orderByName.filter(
     channel => query !== ''
       ? channel.displayName.toLowerCase().search(query.toLowerCase()) !== -1
       : true);

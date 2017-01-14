@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import './Search.sass';
 
 const Search = (
   { autocomplete, query, onAddClick, onBlur, onWritingText }, input
@@ -13,7 +14,7 @@ const Search = (
       onInput={() => onWritingText(input)}
       autoComplete='off'
     />
-    <span className='bar'></span>
+    <span className='bar' />
     <label>Search for channels</label>
     <datalist id='suggestions'>
       {query &&
@@ -28,9 +29,17 @@ const Search = (
       type='submit'
       onClick={e => onAddClick(e, input)}
     >
-      <i className="fa fa-search" aria-hidden="true"></i>
+      <i className='fa fa-search' aria-hidden='true' />
     </button>
   </form>
 );
+
+Search.propTypes = {
+  autocomplete: PropTypes.object.isRequired,
+  query: PropTypes.string.isRequired,
+  onAddClick: PropTypes.func.isRequired,
+  onBlur: PropTypes.func.isRequired,
+  onWritingText: PropTypes.func.isRequired
+};
 
 export default Search;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ControlBox from '../ControlBox';
+import ControlBox from '../../containers/Controls';
 import Search from '../../containers/Search';
 
 const Controls = () => (

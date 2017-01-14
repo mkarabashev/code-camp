@@ -7,6 +7,7 @@ import {
   SET_FILTER,
   REQUIRE_SUGGESTIONS,
   RECEIVE_SUGGESTIONS,
+  INVALIDATE_SUGGESTIONS,
   ADD_QUERY,
   CHANGE_CLASSNAME
 } from '../constants';
@@ -30,13 +31,13 @@ export const requireSuggestions = query => ({ type: REQUIRE_SUGGESTIONS, query }
 export const receiveSuggestions = (query, suggestions) => ({ type: RECEIVE_SUGGESTIONS, query, suggestions });
 export const invalidateSuggestions = query => ({ type: INVALIDATE_SUGGESTIONS, query });
 export const addQuery = query => ({ type: ADD_QUERY, query });
-export const changeClassName = nameObj => ({ type: CHANGE_CLASSNAME, nameObj});
+export const changeClassName = nameObj => ({ type: CHANGE_CLASSNAME, nameObj });
 
 // async action creators
 const fetchReq = (type, channel) => Promise.race([
-    fetch(makeUrl(type, channel), config),
-    timeoutPromise(3000)
-  ])
+  fetch(makeUrl(type, channel), config),
+  timeoutPromise(3000)
+])
   .then(res => res.json());
 
 const fetchData = channel => dispatch => {
@@ -68,11 +69,11 @@ export const fetchDataIfNeeded = channel => (dispatch, getState) => {
 };
 
 const fetchSuggestions = query => dispatch => {
-  dispatch(requireSuggestions(query))
+  dispatch(requireSuggestions(query));
   return Promise.race([
-      fetch(makeUrl('search/channels?limit=5&q=', query), config),
-      timeoutPromise(3000)
-    ])
+    fetch(makeUrl('search/channels?limit=5&q=', query), config),
+    timeoutPromise(3000)
+  ])
     .then(res => res.json())
     .then(payload => payload.channels.map(suggestion => suggestion.display_name))
     .then(data => dispatch(receiveSuggestions(query, data)))

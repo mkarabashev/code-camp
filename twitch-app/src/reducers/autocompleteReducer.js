@@ -23,7 +23,7 @@ const suggestionReducer = (
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: true
-      })
+      });
     default:
       return state;
   }

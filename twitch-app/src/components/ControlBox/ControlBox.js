@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { ALL, ONLINE, OFFLINE, MISSING } from '../../constants';
 import './ControlBox.sass';
 
 const ControlBox = ({ channels, onRefreshClick, onFilterChange }, filter) => (
   <div>
     <button className='btn' onClick={() => onRefreshClick(channels)}>
-      <i className="fa fa-refresh" aria-hidden="true"></i>
+      <i className='fa fa-refresh' aria-hidden='true' />
     </button>
     <span> |</span>
     <span id='filter'>
@@ -18,9 +18,15 @@ const ControlBox = ({ channels, onRefreshClick, onFilterChange }, filter) => (
         <option value={OFFLINE}>Offline</option>
         <option value={MISSING}>Missing</option>
       </select>
-      <i className="fa fa-filter" aria-hidden="true"></i>
+      <i className='fa fa-filter' aria-hidden='true' />
     </span>
   </div>
 );
+
+ControlBox.propTypes = {
+  channels: PropTypes.object.isRequired,
+  onRefreshClick: PropTypes.func.isRequired,
+  onFilterChange: PropTypes.func.isRequired
+};
 
 export default ControlBox;

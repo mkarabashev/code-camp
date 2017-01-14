@@ -5,7 +5,6 @@ export const timeoutPromise = delay => new Promise((resolve, reject) => {
   );
 });
 
-
 // get or set the interval
 let queryInterval;
 export const getInt = () => queryInterval;

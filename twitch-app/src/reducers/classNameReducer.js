@@ -7,7 +7,7 @@ const classNameReducer = (state = Map({ results: 'results' }), action) => {
       return state.merge(action.nameObj);
     default:
       return state;
-  };
+  }
 };
 
 export default classNameReducer;

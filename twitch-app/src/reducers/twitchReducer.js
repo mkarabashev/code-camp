@@ -15,11 +15,11 @@ const channelReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        lastUpdated: false,
+        lastUpdated: NaN,
         displayName: '',
-        logo: null,
-        status: null,
-        url: null
+        logo: '',
+        status: '',
+        url: ''
       });
     case REQUIRE_DATA:
       return Object.assign({}, state, {
@@ -33,20 +33,20 @@ const channelReducer = (state = {}, action) => {
         lastUpdated: action.receivedAt,
         logName: action.channel,
         displayName: action.data.display_name || action.channel,
-        logo: action.data.logo,
+        logo: action.data.logo || '',
         game: action.game,
         status: action.data.stream
           ? action.data.status
           : (action.data.display_name ? OFFLINE : MISSING),
-        url: action.data.url
+        url: action.data.url || ''
       });
     case INVALIDATE_DATA:
-      return Object.assign({} ,state, {
+      return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: true
       });
     default:
-      return state
+      return state;
   }
 };
 
