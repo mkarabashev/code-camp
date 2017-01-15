@@ -4,7 +4,7 @@ import { ALL, ONLINE, OFFLINE, MISSING } from '../constants';
 import { fetchDataIfNeeded, deleteChannel } from '../actions';
 import ChannelBox from '../components/ChannelBox';
 
-class Channels extends Component {
+export class Channels extends Component {
 
   componentDidMount () {
     const { channels, fetchDataIfNeeded } = this.props;

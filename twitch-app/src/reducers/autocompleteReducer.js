@@ -1,7 +1,7 @@
 import { REQUIRE_SUGGESTIONS, RECEIVE_SUGGESTIONS, INVALIDATE_SUGGESTIONS } from '../constants';
 import { Map } from 'immutable';
 
-const suggestionReducer = (
+export const suggestionReducer = (
   state = {
     isFetching: false,
     didInvalidate: false,

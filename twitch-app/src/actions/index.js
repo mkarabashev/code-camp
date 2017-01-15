@@ -14,6 +14,8 @@ import {
 
 import { makeUrl, config } from '../utils/urls';
 import { timeoutPromise } from '../utils/misc';
+import 'whatwg-fetch';
+import 'babel-polyfill';
 
 // sync action creators
 export const requireData = channel => ({ type: REQUIRE_DATA, channel });
@@ -40,7 +42,7 @@ const fetchReq = (type, channel) => Promise.race([
 ])
   .then(res => res.json());
 
-const fetchData = channel => dispatch => {
+export const fetchData = channel => dispatch => {
   dispatch(requireData(channel));
 
   return Promise
@@ -68,14 +70,15 @@ export const fetchDataIfNeeded = channel => (dispatch, getState) => {
   if (shouldFetchData(getState(), channel)) return dispatch(fetchData(channel));
 };
 
-const fetchSuggestions = query => dispatch => {
+export const fetchSuggestions = query => dispatch => {
   dispatch(requireSuggestions(query));
   return Promise.race([
     fetch(makeUrl('search/channels?limit=5&q=', query), config),
     timeoutPromise(3000)
   ])
     .then(res => res.json())
-    .then(payload => payload.channels.map(suggestion => suggestion.display_name))
+    .then(payload => payload.channels)
+    .then(channels => channels.map(channel => channel.display_name))
     .then(data => dispatch(receiveSuggestions(query, data)))
     .catch(err => {
       dispatch(invalidateSuggestions);
