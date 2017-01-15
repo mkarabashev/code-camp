@@ -9,7 +9,7 @@ import {
 } from '../constants';
 import { Map } from 'immutable';
 
-const channelReducer = (state = {}, action) => {
+export const channelReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_CHANNEL:
       return Object.assign({}, state, {
@@ -34,7 +34,6 @@ const channelReducer = (state = {}, action) => {
         logName: action.channel,
         displayName: action.data.display_name || action.channel,
         logo: action.data.logo || '',
-        game: action.game,
         status: action.data.stream
           ? action.data.status
           : (action.data.display_name ? OFFLINE : MISSING),

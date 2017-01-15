@@ -9,8 +9,6 @@ import {
   fetchSuggestionsIfNeeded
 } from '../actions';
 
-console.log(changeClassName);
-
 const mapStateToProps = state => {
   return {
     autocomplete: state.autocompleteReducer,
