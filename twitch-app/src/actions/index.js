@@ -36,10 +36,11 @@ export const addQuery = query => ({ type: ADD_QUERY, query });
 export const changeClassName = nameObj => ({ type: CHANGE_CLASSNAME, nameObj });
 
 // async action creators
-const fetchReq = (type, channel) => Promise.race([
-  fetch(makeUrl(type, channel), config),
-  timeoutPromise(3000)
-])
+const fetchReq = (type, channel) =>
+  Promise.race([
+    fetch(makeUrl(type, channel), config),
+    timeoutPromise(3000)
+  ])
   .then(res => res.json());
 
 export const fetchData = channel => dispatch => {
@@ -72,11 +73,7 @@ export const fetchDataIfNeeded = channel => (dispatch, getState) => {
 
 export const fetchSuggestions = query => dispatch => {
   dispatch(requireSuggestions(query));
-  return Promise.race([
-    fetch(makeUrl('search/channels?limit=5&q=', query), config),
-    timeoutPromise(3000)
-  ])
-    .then(res => res.json())
+  return fetchReq('search/channels?limit=5&q=', query)
     .then(payload => payload.channels)
     .then(channels => channels.map(channel => channel.display_name))
     .then(data => dispatch(receiveSuggestions(query, data)))
