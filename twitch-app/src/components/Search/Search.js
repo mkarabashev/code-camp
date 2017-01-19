@@ -14,15 +14,17 @@ const Search = (
       onInput={() => onWritingText(input)}
       autoComplete='off'
     />
+
     <span className='bar' />
     <label>Search for channels</label>
     <datalist id='suggestions'>
       {query &&
         autocomplete.get(query) &&
-        autocomplete.get(query).suggestions.map((res, i) =>
+        autocomplete.get(query).suggestions.slice(0, 4).map((res, i) =>
           <option key={i} value={res} />
       )}
     </datalist>
+    
     <button
       className='btn'
       id='add'
