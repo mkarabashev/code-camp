@@ -3,11 +3,14 @@ import './modules/chart';
 
 const $nav = $('.nav');
 const $chartContainer = $('.chart-container');
-const charts = {
+const $charts = {
   gdp: $chartContainer.find('#gdp-chart'),
   doping: $chartContainer.find('#doping-chart'),
   temperature: $chartContainer.find('#temp-chart')
 };
+
+var $active = $nav.find('.active');
+var $shown = $charts[$active.attr('id')];
 
 $($nav).on('click', 'li', (e) => chartHandler(e));
 
@@ -17,11 +20,16 @@ const chartHandler = (e) => {
 };
 
 const render = chart => {
-  $nav.children().removeClass('active');
-  $(chart).addClass('active');
+  if (!chart) { // render initially
+    $chartContainer.children().hide();
+    return void $shown.show();
+  }
 
-  $chartContainer.children().hide();
-  charts[ chart.attr('id') ].show();
+  $active.removeClass('active');
+  ($active = $(chart)).addClass('active');
+
+  $shown.hide();
+  ($shown = $charts[ chart.attr('id') ]).show();
 };
 
-render($nav.find('#gdp'));
+render();
