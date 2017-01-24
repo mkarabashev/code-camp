@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onAddClick: (e, input) => {
       e.preventDefault();
-      const channel = input.value.trim();
+      const channel = input.value.trim().toLowerCase();
 
       if (channel) {
         dispatch(addChannel(channel));
@@ -35,7 +35,7 @@ const mapDispatchToProps = dispatch => {
     onWritingText: input => {
       const onStopping = input => {
         if (!input) return dispatch(addQuery(''));
-        const query = input.value.trim();
+        const query = input.value.trim().toLowerCase();
         dispatch(addQuery(query));
         dispatch(fetchSuggestionsIfNeeded(query));
       };

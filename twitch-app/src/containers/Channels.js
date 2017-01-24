@@ -25,7 +25,10 @@ export class Channels extends Component {
       <div className={results}>
         {filteredChannels.map((channel, i) =>
           <ChannelBox
-            key={i + channel}
+            key={channel.displayName && channel.displayName.length
+              ? channel.displayName
+              : i
+            }
             data={channel}
             handleChange={() => deleteChannel(channel.logName)}
           />

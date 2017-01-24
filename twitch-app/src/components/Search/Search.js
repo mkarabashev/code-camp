@@ -21,7 +21,7 @@ const Search = (
       {query &&
         autocomplete.get(query) &&
         autocomplete.get(query).suggestions.slice(0, 4).map((res, i) =>
-          <option key={i + res} value={res} />
+          <option key={res} value={res} />
       )}
     </datalist>
 
