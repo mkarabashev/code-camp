@@ -76,7 +76,10 @@ const attributes = {
   tooltip: {
     grouped: false,
     format: {
-      value: (val, ratio, id, i) => `${temp[`${1753 + i}:${id}`].toFixed(2)} Degrees`
+      value: (val, ratio, id, i) =>
+        i == 262 && (id == 'October' || id == 'November' || id == 'December')
+          ? '' // the last 2 months of 2015 are missing from the dataset
+          : `${temp[`${1753 + i}:${id}`].toFixed(2)} Degrees`
     }
   },
   legend: {
